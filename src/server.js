@@ -1,0 +1,36 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+const db = require('./database/db');
+const taskRoutes = require ('./routes/taskRoutes');
+
+const app = express();
+const PORT = 3000;
+
+
+// MIDDLEWARES
+app.use(express.static(path.join(__dirname, '../public')));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
+
+db.initiazeDatabase();
+
+// ROTAS
+
+app.use('/api/tasks', taskRoutes);
+app.get('/', (req, res) =>{
+    res.sendFile(path.join(__dirname, '../public/index.html'));
+});
+
+app.listen(PORT, () => {
+    console.log(`
+    ╔════════════════════════════════════════╗
+    ║   TASK MANAGER - SERVIDOR INICIADO     ║
+    ╠════════════════════════════════════════╣
+    ║  URL: http://localhost:${PORT}         ║
+    ║  Pressione Ctrl+C para parar           ║
+    ╚════════════════════════════════════════╝
+    `);
+});
+ 
+module.exports = app;
