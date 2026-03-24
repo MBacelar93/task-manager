@@ -1,17 +1,17 @@
 const TaskModel = require('../models/taskModel');
     
-TaskModel.getAllTasks((err, task) => {
-    if (err) {
 
-        return res.status(500).json( {
-            error: 'Erro ao buscar tarefas',
-            message: err.message
-        });
-
-    }
-    res.status(200).json(tasks);    
-   
-});
+const getAllTasks = (req, res) => {
+    TaskModel.getAllTasks((err, tasks) => {
+        if (err) {
+            return res.status(500).json({ 
+                error: 'Erro ao buscar tarefas',
+                message: err.message 
+            });
+        }
+        res.status(200).json(tasks);
+    });
+};
 
 const getTaskById = (req, res) => {
     const { id } = req.params;
