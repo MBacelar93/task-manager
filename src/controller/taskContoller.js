@@ -122,3 +122,37 @@ const deleteTask = (req, res) => {
         });
     });
 };
+
+const toggleTaskCompletion = (req, res) => {
+    const { id } = req.params;
+    
+    TaskModel.toggleTaskCompletion(id, (err, changes) => {
+        if (err) {
+            return res.status(500).json({ 
+                error: 'Erro ao alternar status da tarefa',
+                message: err.message 
+            });
+        }
+        
+        if (changes === 0) {
+            return res.status(404).json({ 
+                error: 'Tarefa não encontrada' 
+            });
+        }
+        
+        res.status(200).json({ 
+            message: 'Status da tarefa alterado com sucesso!',
+            id: id 
+        });
+    });
+};
+
+ 
+module.exports = {
+    getAllTasks,
+    getTaskById,
+    createTask,
+    updateTask,
+    deleteTask,
+    toggleTaskCompletion
+};
