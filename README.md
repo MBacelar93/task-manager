@@ -164,4 +164,4 @@ MIT
 
 ---
 
-**Desenvolvido com ❤️ para aprender desenvolvimento web**
+**Desenvolvido para aprender desenvolvimento web**
