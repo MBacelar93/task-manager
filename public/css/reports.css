@@ -1,0 +1,366 @@
+/**
+ * REPORTS.CSS - Estilos específicos para a página de relatórios
+ */
+
+/* ==========================================
+   SEÇÃO DE NAVEGAÇÃO
+   ========================================== */
+
+.nav-section {
+    margin-bottom: 30px;
+}
+
+.btn-secondary {
+    background: var(--light-text);
+    color: var(--white);
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+.btn-secondary:hover {
+    background: #5f8c8d;
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   ESTATÍSTICAS (CARDS)
+   ========================================== */
+
+.stats-section {
+    margin-bottom: 40px;
+}
+
+.stats-section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: var(--dark-text);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: var(--light-bg);
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-left: 4px solid var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card.stat-completed {
+    border-left-color: var(--success-color);
+}
+
+.stat-card.stat-pending {
+    border-left-color: var(--danger-color);
+}
+
+.stat-card.stat-percentage {
+    border-left-color: #f39c12;
+}
+
+.stat-icon {
+    font-size: 32px;
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: var(--light-text);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--dark-text);
+}
+
+/* ==========================================
+   GRÁFICOS
+   ========================================== */
+
+.charts-section {
+    margin-bottom: 40px;
+}
+
+.charts-section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: var(--dark-text);
+}
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.chart-container {
+    background: var(--light-bg);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+}
+
+.chart-container h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: var(--dark-text);
+    text-align: center;
+}
+
+.chart-container canvas {
+    max-height: 300px;
+}
+
+/* ==========================================
+   DOWNLOADS
+   ========================================== */
+
+.downloads-section {
+    background: var(--light-bg);
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+}
+
+.downloads-section h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--dark-text);
+}
+
+.download-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.btn-download {
+    flex: 1;
+    min-width: 200px;
+    padding: 15px 25px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-csv {
+    background: #27ae60;
+    color: var(--white);
+}
+
+.btn-csv:hover {
+    background: #229954;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
+}
+
+.btn-pdf {
+    background: #e74c3c;
+    color: var(--white);
+}
+
+.btn-pdf:hover {
+    background: #c0392b;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+}
+
+.btn-download:active {
+    transform: translateY(0);
+}
+
+/* ==========================================
+   TABELA DE TAREFAS DETALHADAS
+   ========================================== */
+
+.tasks-detail-section {
+    margin-bottom: 30px;
+}
+
+.tasks-detail-section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: var(--dark-text);
+}
+
+.tasks-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    border: 2px solid var(--primary-color);
+    background: var(--white);
+    color: var(--primary-color);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background: var(--light-bg);
+}
+
+.filter-btn.active {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.tasks-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tasks-table thead {
+    background: var(--light-bg);
+    border-bottom: 2px solid #ddd;
+}
+
+.tasks-table th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--dark-text);
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.tasks-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    color: var(--dark-text);
+}
+
+.tasks-table tbody tr:hover {
+    background: var(--light-bg);
+}
+
+.tasks-table .status-completed {
+    color: var(--success-color);
+    font-weight: 600;
+}
+
+.tasks-table .status-pending {
+    color: var(--danger-color);
+    font-weight: 600;
+}
+
+.tasks-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ==========================================
+   MAIN REPORTS
+   ========================================== */
+
+.reports-main {
+    max-width: 1200px;
+}
+
+/* ==========================================
+   RESPONSIVO
+   ========================================== */
+
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+    }
+
+    .stat-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .charts-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .download-buttons {
+        flex-direction: column;
+    }
+
+    .btn-download {
+        min-width: 100%;
+    }
+
+    .tasks-filters {
+        flex-wrap: wrap;
+    }
+
+    .filter-btn {
+        flex: 1;
+        min-width: 80px;
+    }
+
+    .tasks-table {
+        font-size: 12px;
+    }
+
+    .tasks-table th,
+    .tasks-table td {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-icon {
+        font-size: 24px;
+    }
+
+    .stat-value {
+        font-size: 20px;
+    }
+
+    .download-buttons {
+        flex-direction: column;
+    }
+
+    .btn-download {
+        width: 100%;
+    }
+
+    .tasks-table {
+        overflow-x: auto;
+    }
+}

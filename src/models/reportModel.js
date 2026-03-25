@@ -86,7 +86,7 @@ const getTasksByStatus = (callback) => {
     });
 };
 
-const getTaskByDate = (callback) => {
+const getTasksByDate = (callback) => {
     const query = `
         SELETC
             DATE (created_at) as date,
@@ -107,7 +107,7 @@ const getTaskByDate = (callback) => {
 };
 
 
-const getCompletionsRate = (callback) => {
+const getCompletionRate = (callback) => {
     const query = `
         SELECT 
             DATE(created_at) as date,
