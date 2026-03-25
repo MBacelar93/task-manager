@@ -2,9 +2,10 @@ const { db } = require('../database/db');
 
 const getGeneralStats = (callback) => {
     const query = `
-        SELECT COUNT(*) as total,
-        SUM(CASE WHEN completed = 1 THEN 1 ELSE 0 END) as completed,
-        SUM(CASE WHEN completed = 0 THEN 1 ELSE 0 END) as pending
+        SELECT 
+            COUNT(*) as total,
+            SUM(CASE WHEN completed = 1 THEN 1 ELSE 0 END) as completed,
+            SUM(CASE WHEN completed = 0 THEN 1 ELSE 0 END) as pending
         FROM tasks
     `;
 
@@ -12,19 +13,18 @@ const getGeneralStats = (callback) => {
         if (err) {
             callback(err, null);
         } else {
-
             const stats = {
                 total: row.total || 0,
                 completed: row.completed || 0,
-                pending: row.peding || 0,
-                percentage: row.total > 0 ? Math.round((row.completed/row.total)*100) : 0
+                pending: row.pending || 0,
+                percentage: row.total > 0
+                    ? Math.round((row.completed / row.total) * 100)
+                    : 0
             };
 
             callback(null, stats);
-
         }
     });
-
 };
 
 const getAllTasks = (callback) => {
@@ -35,14 +35,14 @@ const getAllTasks = (callback) => {
             description,
             completed,
             created_at,
-            update_at
+            updated_at
         FROM tasks
         ORDER BY created_at DESC
     `;
 
     db.all(query, [], (err, rows) => {
         if (err) {
-           callback(err, null); 
+            callback(err, null);
         } else {
             callback(null, rows || []);
         }
@@ -53,10 +53,10 @@ const getTasksByStatus = (callback) => {
     const query = `
         SELECT
             completed,
-            COUNT (*) as count,
+            COUNT(*) as count,
             GROUP_CONCAT(title, ',') as titles
         FROM tasks
-        GROUP by completed
+        GROUP BY completed
     `;
 
     db.all(query, [], (err, rows) => {
@@ -64,23 +64,24 @@ const getTasksByStatus = (callback) => {
             callback(err, null);
         } else {
             const result = {
-                completed: [],
-                pending: []
+                completed: { count: 0, titles: [] },
+                pending: { count: 0, titles: [] }
             };
-            
+
             rows.forEach(row => {
-                if (row.completed === 1){
+                if (row.completed === 1) {
                     result.completed = {
                         count: row.count,
-                        titles: row.titles ? row.titles.split(', '): []
+                        titles: row.titles ? row.titles.split(',') : []
                     };
                 } else {
                     result.pending = {
                         count: row.count,
-                        titles: row.titles ? row.titles.split(', '): []
+                        titles: row.titles ? row.titles.split(',') : []
                     };
                 }
             });
+
             callback(null, result);
         }
     });
@@ -88,8 +89,8 @@ const getTasksByStatus = (callback) => {
 
 const getTasksByDate = (callback) => {
     const query = `
-        SELETC
-            DATE (created_at) as date,
+        SELECT
+            DATE(created_at) as date,
             COUNT(*) as count
         FROM tasks
         GROUP BY DATE(created_at)
@@ -97,7 +98,7 @@ const getTasksByDate = (callback) => {
         LIMIT 30
     `;
 
-    db.all (query, [], (err, rows) => {
+    db.all(query, [], (err, rows) => {
         if (err) {
             callback(err, null);
         } else {
@@ -105,7 +106,6 @@ const getTasksByDate = (callback) => {
         }
     });
 };
-
 
 const getCompletionRate = (callback) => {
     const query = `
@@ -116,23 +116,26 @@ const getCompletionRate = (callback) => {
         FROM tasks
         GROUP BY DATE(created_at)
         ORDER BY date DESC
-        LIMIT 30   
+        LIMIT 30
     `;
 
-    db.all (query, [], (err, rows) => {
+    db.all(query, [], (err, rows) => {
         if (err) {
             callback(err, null);
         } else {
-            const data = (rows || []).map(row =>({
+            const data = (rows || []).map(row => ({
                 date: row.date,
                 completed: row.completed || 0,
-                total: row.total > 0 ? Math.round((row.completed / row.total)*100) : 0
+                total: row.total || 0,
+                percentage: row.total > 0
+                    ? Math.round((row.completed / row.total) * 100)
+                    : 0
             }));
+
             callback(null, data);
         }
     });
 };
-
 
 module.exports = {
     getGeneralStats,

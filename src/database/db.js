@@ -5,7 +5,7 @@ const DB_PATH = path.join(__dirname, '../../task_manager.db');
 
 const db = new sqlite3.Database(DB_PATH, (err) => {
     if (err) {
-        console.error('❌ Erro ao conectar no banco de dados', err.massage);
+        console.error('❌ Erro ao conectar no banco de dados', err.message);
     }else {
         console.log('✅ Conectado ao banco de dados SQLite');
     }
