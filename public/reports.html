@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios - Task Manager</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/reports.css">
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <!-- jsPDF para gerar PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header class="header">
+            <h1>📊 Relatórios</h1>
+            <p class="subtitle">Análise completa das suas tarefas</p>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content reports-main">
+            
+            <!-- BOTÃO VOLTAR -->
+            <div class="nav-section">
+                <a href="/" class="btn btn-secondary">← Voltar para Tarefas</a>
+            </div>
+
+            <!-- SEÇÃO DE ESTATÍSTICAS -->
+            <section class="stats-section">
+                <h2>Estatísticas Gerais</h2>
+                
+                <div id="loadingStats" class="loading">
+                    Carregando estatísticas...
+                </div>
+                
+                <div id="statsContainer" class="stats-grid" style="display: none;">
+                    <!-- Cards de estatísticas -->
+                    <div class="stat-card stat-total">
+                        <div class="stat-icon">📋</div>
+                        <div class="stat-content">
+                            <div class="stat-label">Total de Tarefas</div>
+                            <div class="stat-value" id="totalTasks">0</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-completed">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-content">
+                            <div class="stat-label">Concluídas</div>
+                            <div class="stat-value" id="completedTasks">0</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-pending">
+                        <div class="stat-icon">⏳</div>
+                        <div class="stat-content">
+                            <div class="stat-label">Pendentes</div>
+                            <div class="stat-value" id="pendingTasks">0</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-percentage">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-content">
+                            <div class="stat-label">Taxa de Conclusão</div>
+                            <div class="stat-value" id="percentageTasks">0%</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO DE GRÁFICOS -->
+            <section class="charts-section">
+                <h2>Visualizações</h2>
+                
+                <div class="charts-grid">
+                    <!-- Gráfico Pizza -->
+                    <div class="chart-container">
+                        <h3>Distribuição de Tarefas</h3>
+                        <canvas id="pieChart"></canvas>
+                    </div>
+
+                    <!-- Gráfico Barras -->
+                    <div class="chart-container">
+                        <h3>Status das Tarefas</h3>
+                        <canvas id="barChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO DE DOWNLOADS -->
+            <section class="downloads-section">
+                <h2>Downloads</h2>
+                <div class="download-buttons">
+                    <button id="downloadCSV" class="btn btn-download btn-csv">
+                        📊 Download CSV (Excel)
+                    </button>
+                    <button id="downloadPDF" class="btn btn-download btn-pdf">
+                        📄 Download PDF
+                    </button>
+                </div>
+                <div id="downloadMessage" class="message"></div>
+            </section>
+
+            <!-- SEÇÃO DE TAREFAS DETALHADAS -->
+            <section class="tasks-detail-section">
+                <h2>Lista Detalhada</h2>
+                
+                <div id="loadingTasks" class="loading" style="display: none;">
+                    Carregando tarefas...
+                </div>
+                
+                <div class="tasks-filters">
+                    <button class="filter-btn active" data-filter="all">Todas</button>
+                    <button class="filter-btn" data-filter="completed">Concluídas</button>
+                    <button class="filter-btn" data-filter="pending">Pendentes</button>
+                </div>
+
+                <table id="tasksTable" class="tasks-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Descrição</th>
+                            <th>Status</th>
+                            <th>Data de Criação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tasksTableBody">
+                        <!-- Linhas da tabela serão inseridas aqui -->
+                    </tbody>
+                </table>
+            </section>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p>&copy; 2024 Task Manager - Desenvolvido com ❤️</p>
+        </footer>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="/js/reports.js"></script>
+</body>
+</html>

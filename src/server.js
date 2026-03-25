@@ -27,10 +27,10 @@ app.get('/', (req, res) =>{
 
 app.listen(PORT, () => {
     console.log(`
-    ╔════════════════════════════════════════╗
-    ║   TASK MANAGER - SERVIDOR INICIADO     ║
+ ╔════════════════════════════════════════╗
+    ║   TASK MANAGER - SERVIDOR INICIADO    ║
     ╠════════════════════════════════════════╣
-    ║  URL: http://localhost:${PORT}         ║
+    ║  URL: http://localhost:${PORT}           ║
     ║  Pressione Ctrl+C para parar           ║
     ╚════════════════════════════════════════╝
     `);

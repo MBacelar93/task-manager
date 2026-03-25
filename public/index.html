@@ -3,48 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
     <title>Task Manager - Gestão de Tarefas</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <div class="container">
+        <!-- HEADER -->
         <header class="header">
-            <h1>Gestor de Tarefas</h1>
+            <h1>📋 Gestor de Tarefas</h1>
             <p class="subtitle">Organize suas atividades de forma simples e eficiente</p>
+            <a href="/reports.html" class="btn btn-secondary" style="margin-top: 15px; display: inline-block;">📊 Ver Relatórios</a>
         </header>
+
+        <!-- MAIN CONTENT -->
         <main class="main-content">
+            
+            <!-- SEÇÃO DE ENTRADA: Adicionar nova tarefa -->
             <section class="input-section">
                 <h2>Nova Tarefa</h2>
                 <form id="taskForm" class="task-form">
                     <div class="form-group">
-                        <input type="text" id="titleInput" placeholder="Título da Tarefa" class="form-input" novalidate>
+                        <input 
+                            type="text" 
+                            id="titleInput" 
+                            placeholder="Título da tarefa"
+                            class="form-input"
+                            required
+                        >
                     </div>
+                    
                     <div class="form-group">
-                        <textarea name="form-textarea" id="descriptionInput" placeholder="Descrição Opcional" class="form-textarea"></textarea>
+                        <textarea 
+                            id="descriptionInput" 
+                            placeholder="Descrição (opcional)"
+                            class="form-textarea"
+                            rows="3"
+                        ></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Adicionar Tarefa</button>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        ➕ Adicionar Tarefa
+                    </button>
                 </form>
                 <div id="formMessage" class="message"></div>
             </section>
 
+            <!-- SEÇÃO DE TAREFAS: Lista de tarefas -->
             <section class="tasks-section">
                 <h2>Minhas Tarefas</h2>
+                
                 <div id="loadingSpinner" class="loading">
                     Carregando tarefas...
                 </div>
+                
                 <ul id="taskList" class="task-list">
-
+                    <!-- As tarefas aparecerão aqui através de JavaScript -->
                 </ul>
+                
                 <div id="emptyMessage" class="empty-message" style="display: none;">
-                    <p>Nenhuma tarefa encontrada</p>
-                    <p>Adicione uma nova tarefa para começar</p>
+                    <p>📭 Nenhuma tarefa encontrada</p>
+                    <p>Adicione uma nova tarefa para começar!</p>
                 </div>
             </section>
+
         </main>
+
+        <!-- FOOTER -->
         <footer class="footer">
-             <p>&copy; 2026 Task Manager - Bacelar - Soluções Tecnologicas</p>
+            <p>&copy; 2024 Task Manager - Bacelar - Soluções em Tecnologia</p>
         </footer>
     </div>
-    <script src="js/main.js"></script>
+
+    <!-- SCRIPT -->
+    <script src="/js/main.js"></script>
 </body>
 </html>
